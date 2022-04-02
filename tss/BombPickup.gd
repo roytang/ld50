@@ -20,3 +20,11 @@ func _on_BombPickup_body_entered(body):
 	if body.is_in_group("player"):
 		body.emit_signal("pickup", "bomb")
 		queue_free()
+
+
+func _on_VanishTimer_timeout():
+	$VanishAnimationPlayer.play("blink")
+
+
+func _on_VanishAnimationPlayer_animation_finished(anim_name):
+	queue_free()

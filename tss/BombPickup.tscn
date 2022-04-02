@@ -1,20 +1,73 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/bomb.png" type="Texture" id=1]
 [ext_resource path="res://BombPickup.gd" type="Script" id=2]
+[ext_resource path="res://Assets/pickup_frame.png" type="Texture" id=3]
+[ext_resource path="res://FrameSprite.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "rotate"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 5.0
+radius = 15.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "blink"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
 
 [node name="BombPickup" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 
+[node name="FrameSprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FrameSprite"]
+anims/rotate = SubResource( 2 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="VanishTimer" type="Timer" parent="."]
+wait_time = 18.0
+one_shot = true
+autostart = true
+
+[node name="VanishAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/blink = SubResource( 3 )
+
 [connection signal="body_entered" from="." to="." method="_on_BombPickup_body_entered"]
+[connection signal="timeout" from="VanishTimer" to="." method="_on_VanishTimer_timeout"]
+[connection signal="animation_finished" from="VanishAnimationPlayer" to="." method="_on_VanishAnimationPlayer_animation_finished"]
