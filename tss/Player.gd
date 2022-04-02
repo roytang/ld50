@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal died
+signal hit
 
 export var speed = 100
 export var bullet_speed = 800
@@ -39,3 +41,10 @@ func _physics_process(delta):
 		
 	move_and_slide(direction * speed)
 		
+
+
+func _on_Player_hit():
+	get_tree().call_group("spawner", "emit_signal", "deactivate")
+	get_tree().call_group("enemy", "emit_signal", "deactivate")
+	queue_free()
+	emit_signal("died")

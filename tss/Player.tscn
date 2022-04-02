@@ -19,3 +19,5 @@ shape = SubResource( 1 )
 
 [node name="BulletPoint" type="Node2D" parent="."]
 position = Vector2( 16, 0 )
+
+[connection signal="hit" from="." to="." method="_on_Player_hit"]

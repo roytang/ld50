@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Block.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Spawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://HUD.gd" type="Script" id=4]
 
 [node name="MainScene" type="Node2D"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 4 )
+
+[node name="Message" type="Label" parent="HUD"]
+margin_right = 938.0
+margin_bottom = 61.0
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
@@ -29,11 +37,14 @@ position = Vector2( 294, 139 )
 [node name="Block7" parent="." instance=ExtResource( 2 )]
 position = Vector2( 522, 426 )
 
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 296, 301 )
+[node name="Spawner" parent="." instance=ExtResource( 3 )]
+position = Vector2( 229, 259 )
 
-[node name="Enemy2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 425, 400 )
+[node name="Spawner2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 635, 177 )
 
-[node name="Enemy3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 341, 239 )
+[node name="Spawner3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 599, 450 )
+frame = 3
+
+[connection signal="died" from="Player" to="HUD" method="_on_Player_died"]
