@@ -17,7 +17,7 @@ animations = [ {
 
 [node name="Spawner" type="AnimatedSprite" groups=["spawner"]]
 frames = SubResource( 1 )
-frame = 3
+frame = 4
 playing = true
 script = ExtResource( 6 )
 

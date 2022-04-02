@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Block.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Spawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://HUD.gd" type="Script" id=4]
+[ext_resource path="res://Assets/bomb.png" type="Texture" id=5]
+[ext_resource path="res://BombPickup.tscn" type="PackedScene" id=6]
 
 [node name="MainScene" type="Node2D"]
 
@@ -13,6 +15,26 @@ script = ExtResource( 4 )
 [node name="Message" type="Label" parent="HUD"]
 margin_right = 938.0
 margin_bottom = 61.0
+
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+margin_left = 1.0
+margin_top = 558.0
+margin_right = 613.0
+margin_bottom = 598.0
+color = Color( 0, 0, 0, 0.501961 )
+
+[node name="BombIcon" type="Sprite" parent="HUD/ColorRect"]
+position = Vector2( 18, 20 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="BombCount" type="Label" parent="HUD/ColorRect"]
+margin_left = 40.0
+margin_top = 12.0
+margin_right = 121.0
+margin_bottom = 33.0
+text = "0"
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
@@ -39,12 +61,20 @@ position = Vector2( 522, 426 )
 
 [node name="Spawner" parent="." instance=ExtResource( 3 )]
 position = Vector2( 229, 259 )
+frame = 0
 
 [node name="Spawner2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 635, 177 )
+frame = 0
 
 [node name="Spawner3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 599, 450 )
-frame = 3
+
+[node name="BombPickup" parent="." instance=ExtResource( 6 )]
+position = Vector2( 490, 244 )
+
+[node name="BombPickup2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 411, 393 )
 
 [connection signal="died" from="Player" to="HUD" method="_on_Player_died"]
+[connection signal="update_hud" from="Player" to="HUD" method="_on_Player_update_hud"]

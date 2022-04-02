@@ -21,3 +21,4 @@ shape = SubResource( 1 )
 position = Vector2( 16, 0 )
 
 [connection signal="hit" from="." to="." method="_on_Player_hit"]
+[connection signal="pickup" from="." to="." method="_on_Player_pickup"]

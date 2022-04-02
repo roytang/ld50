@@ -18,3 +18,8 @@ func show_message(text):
 
 func _on_Player_died():
 	show_message("YOU DIED!")
+
+
+func _on_Player_update_hud(_player):
+	$ColorRect/BombCount.text = str(_player.bombs)
+	

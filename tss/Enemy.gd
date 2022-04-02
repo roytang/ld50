@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal hit
+signal bombed
 signal deactivate
 
 export var speed = 75

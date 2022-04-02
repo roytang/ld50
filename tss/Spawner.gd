@@ -6,17 +6,16 @@ var enemy = preload("res://Enemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	randomize()
 
 
 func _on_Timer_timeout():
 	var enemy_instance = enemy.instance()
 	enemy_instance.position = get_global_position()
+	# 1 in 10 chance the enemy is a bit faster
+	var roll = randi() % 10
+	if roll == 7:
+		enemy_instance.speed += randi() % 50
 	get_tree().get_root().add_child(enemy_instance)
 
 
