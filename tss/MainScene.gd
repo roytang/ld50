@@ -11,6 +11,7 @@ var enemy_spawn_time = enemy_spawn_base_time
 var enemy_spawn_min_time = 3
 var game_running = false
 var paused = false
+var spawn_count = 0
 
 var spawn_points = [
 	Vector2(0, 0),
@@ -52,6 +53,14 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("start") and not game_running:
 			start_game()
+	if Input.is_action_pressed("start") and game_running and paused:
+		get_tree().paused = false
+		paused = false
+		$HUD/Pause.visible = false
+	if Input.is_action_pressed("pause") and game_running and not paused:
+		get_tree().paused = true
+		paused = true
+		$HUD/Pause.visible = true
 		
 
 func start_game():
@@ -65,12 +74,16 @@ func start_game():
 	$DropSpawnTimer.wait_time = timer_base_time + randi() % timer_base_time
 	$DropSpawnTimer.start()
 	# immediately spawn one enemy
+	spawn_count = 0
 	enemy_spawn_time = enemy_spawn_base_time
 	_on_EnemySpawnTimer_timeout()
 	$EnemySpawnTimer.start()
 	game_running = true
 	$HUD/Splash.visible = false
 	$HUD/GameOver.visible = false
+	$HUD/Pause.visible = false
+	$BGM.play()
+	$TimeCounter.time = 0
 	
 func end_game():
 	_player = null
@@ -79,6 +92,9 @@ func end_game():
 	
 	game_running = false
 	$HUD/GameOver.visible = true
+	$HUD/GameOver/TimeSurvived.text = "You survived for " + $TimeCounter.get_time_str() + " !"
+	$HUD/GameOver/ShipsSurvived.text = "You encountered " + str(spawn_count) + " enemy ship(s)."
+	$BGM.stop()
 
 func _on_DropSpawnTimer_timeout():
 	if is_instance_valid(_player):
@@ -104,6 +120,7 @@ func _on_EnemySpawnTimer_timeout():
 		count_opts = spawn_points.size()
 		spawn_instance.position = spawn_points[randi() % count_opts]
 		get_tree().get_root().call_deferred("add_child", spawn_instance)
+		spawn_count = spawn_count + 1
 	
 	# random wait until next drop
 	$EnemySpawnTimer.wait_time = enemy_spawn_time + randi() % 10

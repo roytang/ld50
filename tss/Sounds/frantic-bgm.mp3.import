@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/frantic-bgm.mp3-9c37ddb3f4e1157debfe8c23c68de44e.mp3str"
+
+[deps]
+
+source_file="res://Sounds/frantic-bgm.mp3"
+dest_files=[ "res://.import/frantic-bgm.mp3-9c37ddb3f4e1157debfe8c23c68de44e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
