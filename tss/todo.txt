@@ -1,21 +1,21 @@
 
 - general enemy script
-	- rotates
-	- moves
-	- has hp
-	- takes damage
+	- rotates [ok]
+	- moves [ok]
+	- has hp [ok]
+	- takes damage [ok]
 	- explosion on death
-- enemy bullet firing script
-	- auto aim
+- enemy bullet firing script [ok]
+	- auto aim [ok]
 - components:
-	- turret
-	- double turret
-	- spread turret
+	- turret [ok]
+	- double turret [ok]
+	- spread turret [ok]
 	- swarmer spawner
 	- seeker spawner
 		- seeker missile
 	- component slot
-	- beam turret
+	- beam turret?
 - enemy core:
 	- automatically generate components into component slot
 	- destroy subcomponents when destroyed

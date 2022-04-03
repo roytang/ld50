@@ -64,10 +64,6 @@ script = ExtResource( 6 )
 speed = 30
 rotating = false
 
-[node name="SwarmSpawner" parent="TestEnemy" instance=ExtResource( 3 )]
-position = Vector2( -20, -27 )
-frame = 2
-
 [node name="Core" parent="TestEnemy" instance=ExtResource( 9 )]
 
 [node name="OctoTurret" parent="TestEnemy" instance=ExtResource( 11 )]
@@ -78,6 +74,9 @@ position = Vector2( 31, -11 )
 
 [node name="Turret" parent="TestEnemy" instance=ExtResource( 7 )]
 position = Vector2( 1, 31 )
+
+[node name="SwarmSpawner" parent="TestEnemy" instance=ExtResource( 3 )]
+position = Vector2( 38, 41 )
 
 [connection signal="timeout" from="DropSpawnTimer" to="." method="_on_DropSpawnTimer_timeout"]
 [connection signal="died" from="Player" to="HUD" method="_on_Player_died"]

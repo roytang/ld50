@@ -14,11 +14,14 @@ var can_be_hit = true
 var _player
 var active = false
 
+var explosion = preload("res://Explosion.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_player = get_node("/root/MainScene/Player")
 	if _player:
 		active = true
+	connect("hit", self, "_on_Enemy_hit")
 
 
 func _process(delta):
@@ -38,6 +41,9 @@ func _on_Enemy_hit():
 		hp = hp - 1
 		can_be_hit = false
 		if hp == 0:
+			var explosion_instance = explosion.instance()
+			explosion_instance.position = get_global_position()
+			get_tree().get_root().add_child(explosion_instance)
 			queue_free()
 		else:
 			var _anim = get_node("AnimationPlayer")
