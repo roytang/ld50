@@ -23,7 +23,7 @@
 	- basic (mickey) [ok]
 	- multicore (cross) [ok]
 - your ship:
-	- change bomb behavior
+	- change bomb behavior [ok]
 	- more powerups?
 		- speed up
 		- fire rate up
@@ -31,8 +31,10 @@
 	- remove camera
 - scene
 	- limit to one screen area [ok]
-	- global enemy spawner 
-		- spawn points
+	- SFX [ok]
+	- bg track
+	- global enemy spawner [ok]
+		- spawn points [ok]
 - cruft:
 	- intro screen
 	- game over screen

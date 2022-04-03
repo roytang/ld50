@@ -13,7 +13,8 @@ var can_bomb = true
 var bombs = 3
 
 var bullet = preload("res://Items/PlayerBullet.tscn")
-var bomb = preload("res://Items/Bomb.tscn")
+var explosion = preload("res://Explosion.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +43,7 @@ func _process(delta):
 		emit_signal("update_hud", self)
 		can_bomb = false
 		$AnimationPlayer.play("bomb_explosion")
-		# $BombSound.play()
+		$BombSound.play()
 		get_tree().call_group("enemy", "emit_signal", "hit")
 
 func _physics_process(delta):
@@ -61,12 +62,9 @@ func _physics_process(delta):
 
 
 func _on_Player_hit():
-	get_tree().call_group("spawner", "emit_signal", "deactivate")
-	get_tree().call_group("enemy", "emit_signal", "deactivate")
-	# var camera = $Camera2D
-	# remove_child(camera)
-	# camera.position = get_global_position()
-	# get_tree().get_root().add_child(camera)
+	var explosion_instance = explosion.instance()
+	explosion_instance.position = get_global_position()
+	get_tree().get_root().add_child(explosion_instance)
 	queue_free()
 	emit_signal("died")
 

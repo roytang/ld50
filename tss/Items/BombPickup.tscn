@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://FrameSprite.gd" type="Script" id=1]
 [ext_resource path="res://Assets/bomb.png" type="Texture" id=2]
 [ext_resource path="res://Assets/pickup_frame.png" type="Texture" id=3]
 [ext_resource path="res://Items/BombPickup.gd" type="Script" id=4]
+[ext_resource path="res://Sounds/powerUp.ogg" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=2]
 resource_name = "rotate"
@@ -68,6 +69,10 @@ autostart = true
 [node name="VanishAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/blink = SubResource( 3 )
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
 [connection signal="body_entered" from="." to="." method="_on_BombPickup_body_entered"]
 [connection signal="timeout" from="VanishTimer" to="." method="_on_VanishTimer_timeout"]
 [connection signal="animation_finished" from="VanishAnimationPlayer" to="." method="_on_VanishAnimationPlayer_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
