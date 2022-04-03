@@ -10,7 +10,7 @@ func _ready():
 
 func _process(delta):
 	time += delta
-	print("elapsed : ", get_time_str())
+	# print("elapsed : ", get_time_str())
 
 func get_time_str():
 	var seconds = fmod(time,60)
