@@ -9,6 +9,8 @@ export var timer_base_time = 10
 export var enemy_spawn_base_time = 10
 var enemy_spawn_time = enemy_spawn_base_time
 var enemy_spawn_min_time = 3
+var game_running = false
+var paused = false
 
 var spawn_points = [
 	Vector2(0, 0),
@@ -41,22 +43,42 @@ var spawn_list = [
 		},
 	]	
 
+var player_scene = preload("res://Player.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	_player = get_node("/root/MainScene/Player")
+
+func _process(delta):
+	if Input.is_action_pressed("start") and not game_running:
+			start_game()
+		
+
+func start_game():
+	# clear any enemies leftover from previous run
+	get_tree().call_group("enemy", "queue_free")
+	_player = player_scene.instance()
+	get_tree().get_root().add_child(_player)
+	_player.connect("died", self, "end_game")
+	_player.connect("update_hud", $HUD, "_on_Player_update_hud")
+	_player.emit_signal("update_hud", _player)
 	$DropSpawnTimer.wait_time = timer_base_time + randi() % timer_base_time
 	$DropSpawnTimer.start()
 	# immediately spawn one enemy
+	enemy_spawn_time = enemy_spawn_base_time
 	_on_EnemySpawnTimer_timeout()
 	$EnemySpawnTimer.start()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	game_running = true
+	$HUD/Splash.visible = false
+	$HUD/GameOver.visible = false
+	
+func end_game():
+	_player = null
+	$DropSpawnTimer.stop()
+	$EnemySpawnTimer.stop()
+	
+	game_running = false
+	$HUD/GameOver.visible = true
 
 func _on_DropSpawnTimer_timeout():
 	if is_instance_valid(_player):
@@ -73,7 +95,6 @@ func _on_DropSpawnTimer_timeout():
 
 
 func _on_EnemySpawnTimer_timeout():
-	print("TIMER!")
 	if is_instance_valid(_player):
 		# spawn random component and attach it to the parent
 		var count_opts = spawn_list.size()

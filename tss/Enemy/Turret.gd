@@ -10,7 +10,7 @@ export var bullet_speed = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_player = get_node("/root/MainScene/Player")
+	_player = get_node("/root/Player")
 
 func _on_ShotTimer_timeout():
 	if is_instance_valid(_player):

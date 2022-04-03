@@ -40,7 +40,6 @@ func _ready():
 			var comp_scene = load(new_component_data["scene"])
 			var comp_instance = comp_scene.instance()
 			comp_instance.position = child.position
-			print(comp_instance)
 			_parent.call_deferred("add_child", comp_instance)
 			# print(comp_instance.get_parent())
 			

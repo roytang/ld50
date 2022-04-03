@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
 signal hit
-signal bombed
-signal deactivate
 
 export var speed = 75
 export var rotating = true
@@ -12,15 +10,12 @@ export var hp = 1
 var hit_recovery_secs = 0.2 
 var can_be_hit = true
 var _player
-var active = false
 
 var explosion = preload("res://Explosion.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_player = get_node("/root/MainScene/Player")
-	if _player:
-		active = true
+	_player = get_node("/root/Player")
 	connect("hit", self, "_on_Enemy_hit")
 
 
@@ -57,5 +52,3 @@ func _on_Killzone_body_entered(body):
 		body.emit_signal("hit")
 
 
-func _on_Enemy_deactivate():
-	active = false

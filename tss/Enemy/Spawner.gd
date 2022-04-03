@@ -10,7 +10,6 @@ func _ready():
 
 
 func _on_Timer_timeout():
-	print("Spawner timer")
 	var enemy_instance = enemy.instance()
 	enemy_instance.position = get_global_position()
 	# 1 in 10 chance the enemy is a bit faster
