@@ -17,8 +17,11 @@
 	- component slot
 	- beam turret?
 - enemy core:
-	- automatically generate components into component slot
-	- destroy subcomponents when destroyed
+	- automatically generate components into component slot [ok]
+	- destroy subcomponents when destroyed [ok]
+- composite enemy:
+	- basic (mickey)
+	- multicore
 - your ship:
 	- change bomb behavior
 	- more powerups?
@@ -26,8 +29,10 @@
 		- fire rate up
 		- shield
 	- remove camera
-- viewport [ok]
+- scene
 	- limit to one screen area [ok]
+	- global enemy spawner 
+		- spawn points
 - cruft:
 	- intro screen
 	- game over screen

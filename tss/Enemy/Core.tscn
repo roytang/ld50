@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/core.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Enemy/CoreLogic.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0333
@@ -23,7 +24,6 @@ tracks/0/keys = {
 }
 
 [node name="Core" type="KinematicBody2D" groups=["enemy"]]
-position = Vector2( -4, 2 )
 script = ExtResource( 2 )
 rotating = false
 moving = false
@@ -37,3 +37,6 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hit = SubResource( 2 )
+
+[node name="CoreLogic" type="Node2D" parent="."]
+script = ExtResource( 3 )
