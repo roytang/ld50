@@ -28,7 +28,7 @@
 		- speed up
 		- fire rate up
 		- shield
-	- remove camera
+	- remove camera [ok]
 - scene
 	- limit to one screen area [ok]
 	- SFX [ok]
@@ -36,5 +36,5 @@
 	- global enemy spawner [ok]
 		- spawn points [ok]
 - cruft:
-	- intro screen
-	- game over screen
+	- intro screen [ok]
+	- game over screen [ok]
