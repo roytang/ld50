@@ -61,10 +61,10 @@ func _physics_process(delta):
 func _on_Player_hit():
 	get_tree().call_group("spawner", "emit_signal", "deactivate")
 	get_tree().call_group("enemy", "emit_signal", "deactivate")
-	var camera = $Camera2D
+	# var camera = $Camera2D
 	# remove_child(camera)
-	camera.position = get_global_position()
-	get_tree().get_root().add_child(camera)
+	# camera.position = get_global_position()
+	# get_tree().get_root().add_child(camera)
 	queue_free()
 	emit_signal("died")
 

@@ -11,7 +11,7 @@
 	- turret [ok]
 	- double turret [ok]
 	- spread turret [ok]
-	- swarmer spawner
+	- swarm spawner [ok]
 	- seeker spawner
 		- seeker missile
 	- component slot
@@ -26,8 +26,8 @@
 		- fire rate up
 		- shield
 	- remove camera
-- viewport
-	- limit to one screen area
+- viewport [ok]
+	- limit to one screen area [ok]
 - cruft:
 	- intro screen
 	- game over screen

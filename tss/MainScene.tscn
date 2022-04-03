@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/starfield.png" type="Texture" id=2]
@@ -12,6 +12,12 @@
 [ext_resource path="res://Enemy/DoubleTurret.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Enemy/OctoTurret.tscn" type="PackedScene" id=11]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 307 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 529.5, 10 )
+
 [node name="MainScene" type="Node2D"]
 script = ExtResource( 8 )
 min_pickup_dist = 200
@@ -23,7 +29,6 @@ max_pickup_dist = 400
 motion_mirroring = Vector2( 1024, 600 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 520.5, 331.5 )
 scale = Vector2( 0.502441, 0.334473 )
 texture = ExtResource( 2 )
 
@@ -77,6 +82,38 @@ position = Vector2( 1, 31 )
 
 [node name="SwarmSpawner" parent="TestEnemy" instance=ExtResource( 3 )]
 position = Vector2( 38, 41 )
+
+[node name="LeftWall" type="KinematicBody2D" parent="."]
+position = Vector2( -16, 5 )
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2( -5, 296 )
+shape = SubResource( 1 )
+
+[node name="RightWall" type="KinematicBody2D" parent="."]
+position = Vector2( 1026, -1 )
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+position = Vector2( -5, 296 )
+shape = SubResource( 1 )
+
+[node name="TopWall" type="KinematicBody2D" parent="."]
+position = Vector2( 1026, -1 )
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2( -526.5, -14 )
+shape = SubResource( 2 )
+
+[node name="BottomWall" type="KinematicBody2D" parent="."]
+position = Vector2( 1023, 631 )
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2( -526.5, -14 )
+shape = SubResource( 2 )
 
 [connection signal="timeout" from="DropSpawnTimer" to="." method="_on_DropSpawnTimer_timeout"]
 [connection signal="died" from="Player" to="HUD" method="_on_Player_died"]
