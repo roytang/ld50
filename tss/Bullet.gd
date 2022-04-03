@@ -12,3 +12,7 @@ func _on_Bullet_body_entered(body):
 		get_tree().get_root().add_child(explosion_instance)
 		queue_free()
 		body.emit_signal("hit")
+
+
+func _on_Timer_timeout():
+	queue_free()

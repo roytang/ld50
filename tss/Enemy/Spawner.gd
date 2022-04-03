@@ -2,7 +2,7 @@ extends AnimatedSprite
 
 signal deactivate
 
-var enemy = preload("res://Enemy.tscn")
+var enemy = preload("res://Enemy/Swarmer.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

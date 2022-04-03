@@ -1,0 +1,33 @@
+
+- general enemy script
+	- rotates
+	- moves
+	- has hp
+	- takes damage
+	- explosion on death
+- enemy bullet firing script
+	- auto aim
+- components:
+	- turret
+	- double turret
+	- spread turret
+	- swarmer spawner
+	- seeker spawner
+		- seeker missile
+	- component slot
+	- beam turret
+- enemy core:
+	- automatically generate components into component slot
+	- destroy subcomponents when destroyed
+- your ship:
+	- change bomb behavior
+	- more powerups?
+		- speed up
+		- fire rate up
+		- shield
+	- remove camera
+- viewport
+	- limit to one screen area
+- cruft:
+	- intro screen
+	- game over screen
