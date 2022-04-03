@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/turretShoot.ogg-785f7e1eea349b670166c4515793db35.oggstr"
+
+[deps]
+
+source_file="res://Sounds/turretShoot.ogg"
+dest_files=[ "res://.import/turretShoot.ogg-785f7e1eea349b670166c4515793db35.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
