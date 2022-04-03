@@ -41,7 +41,7 @@ func _ready():
 			var comp_instance = comp_scene.instance()
 			comp_instance.position = child.position
 			_parent.call_deferred("add_child", comp_instance)
-			# print(comp_instance.get_parent())
+			# print(comp_instance.get_parent())wwd
 			
 
 
