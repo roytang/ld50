@@ -6,7 +6,7 @@ var _player
 export var autoaim = true
 
 var bullet = preload("res://Bullet.tscn")
-var bullet_speed = 200
+export var bullet_speed = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,9 +23,18 @@ func _on_ShotTimer_timeout():
 		bullet_instance.set_collision_mask_bit(0, false)
 		bullet_instance.set_collision_mask_bit(1, true)
 		if autoaim: # automatically set angle based on player position
+			print("Firing auto aim")
 			var angle = _player.position - bullet_instance.position
-			bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(angle.angle()))
+			angle = angle.angle()
+			# angle = rad2deg(angle)
+			bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(angle))
 		else: # automatically set angle based on parent position
-			var angle = bullet_instance.position - get_parent().position
-			bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(angle.angle()))
+			print("Firing non auto aim")
+			print("Self position", bullet_instance.position)
+			print("Parent position", get_parent().get_global_position())
+			var angle = bullet_instance.position - get_parent().get_global_position()
+			angle = angle.angle()
+			# angle = rad2deg(angle)
+			print("angle ", rad2deg(angle))
+			bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(angle))
 		get_tree().get_root().add_child(bullet_instance)
