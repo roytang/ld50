@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/blue_arrow.png" type="Texture" id=2]
 [ext_resource path="res://Assets/pickup_frame.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/laserShoot.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/bomb.ogg" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.0416
@@ -51,10 +53,18 @@ shape = SubResource( 1 )
 position = Vector2( 16, 0 )
 
 [node name="BombExplosion" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/bomb_explosion = SubResource( 2 )
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -2.0
+
+[node name="BombSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="hit" from="." to="." method="_on_Player_hit"]
 [connection signal="pickup" from="." to="." method="_on_Player_pickup"]
