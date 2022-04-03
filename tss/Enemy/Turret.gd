@@ -5,7 +5,7 @@ signal hit
 var _player
 export var autoaim = true
 
-var bullet = preload("res://Bullet.tscn")
+var bullet = preload("res://Items/Bullet.tscn")
 export var bullet_speed = 200
 
 # Called when the node enters the scene tree for the first time.

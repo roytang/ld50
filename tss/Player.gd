@@ -12,8 +12,8 @@ var can_fire = true
 var can_bomb = true
 var bombs = 3
 
-var bullet = preload("res://Bullet.tscn")
-var bomb = preload("res://Bomb.tscn")
+var bullet = preload("res://Items/PlayerBullet.tscn")
+var bomb = preload("res://Items/Bomb.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

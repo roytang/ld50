@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var bomb_pickup = preload("res://BombPickup.tscn")
+var bomb_pickup = preload("res://Items/BombPickup.tscn")
 var _player
 export var min_pickup_dist = 300
 export var max_pickup_dist = 600

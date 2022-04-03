@@ -51,7 +51,6 @@ shape = SubResource( 1 )
 position = Vector2( 16, 0 )
 
 [node name="BombExplosion" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
