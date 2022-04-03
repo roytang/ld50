@@ -9,6 +9,7 @@ export var speed = 100
 export var bullet_speed = 800
 export var fire_rate = 0.2
 var can_fire = true
+var can_bomb = true
 var bombs = 3
 
 var bullet = preload("res://Bullet.tscn")
@@ -32,16 +33,15 @@ func _process(delta):
 		yield(get_tree().create_timer(fire_rate), "timeout")
 		can_fire = true
 		
-	if Input.is_action_pressed("fire2") and can_fire and bombs > 0:
-		var bomb_instance = bomb.instance()
-		bomb_instance.position = get_global_position()
-		get_tree().get_root().add_child(bomb_instance)
-		print("Dropped a bomb!")
+	if Input.is_action_pressed("fire2") and can_bomb and bombs > 0:
+		# var bomb_instance = bomb.instance()
+		# bomb_instance.position = get_global_position()
+		# get_tree().get_root().add_child(bomb_instance)
 		bombs = bombs - 1
 		emit_signal("update_hud", self)
-		can_fire = false
-		yield(get_tree().create_timer(fire_rate), "timeout")
-		can_fire = true
+		can_bomb = false
+		$AnimationPlayer.play("bomb_explosion")
+		get_tree().call_group("enemy", "emit_signal", "hit")
 
 func _physics_process(delta):
 	var direction = Vector2()
@@ -73,3 +73,7 @@ func _on_Player_pickup(pickup_type):
 	if pickup_type == "bomb":
 		bombs = bombs + 1
 		emit_signal("update_hud", self)
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	can_bomb = true

@@ -4,7 +4,7 @@
 	- moves [ok]
 	- has hp [ok]
 	- takes damage [ok]
-	- explosion on death
+	- explosion on death [ok]
 - enemy bullet firing script [ok]
 	- auto aim [ok]
 - components:
@@ -14,14 +14,14 @@
 	- swarm spawner [ok]
 	- seeker spawner
 		- seeker missile
-	- component slot
+	- component slot [ok]
 	- beam turret?
 - enemy core:
 	- automatically generate components into component slot [ok]
 	- destroy subcomponents when destroyed [ok]
 - composite enemy:
-	- basic (mickey)
-	- multicore
+	- basic (mickey) [ok]
+	- multicore (cross) [ok]
 - your ship:
 	- change bomb behavior
 	- more powerups?

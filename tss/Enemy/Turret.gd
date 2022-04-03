@@ -17,6 +17,7 @@ func _on_ShotTimer_timeout():
 		var bullet_instance = bullet.instance()
 		bullet_instance.position = get_global_position()
 		bullet_instance.friendly = false
+		bullet_instance.add_to_group("enemy")
 		# enemy bullets can only hit the player on layer 2
 		bullet_instance.set_collision_mask_bit(0, false)
 		bullet_instance.set_collision_mask_bit(1, true)
