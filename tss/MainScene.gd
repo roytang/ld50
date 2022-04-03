@@ -66,6 +66,7 @@ func _process(delta):
 func start_game():
 	# clear any enemies leftover from previous run
 	get_tree().call_group("enemy", "queue_free")
+	get_tree().call_group("pickups", "queue_free")
 	_player = player_scene.instance()
 	get_tree().get_root().add_child(_player)
 	_player.connect("died", self, "end_game")

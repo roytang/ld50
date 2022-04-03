@@ -42,7 +42,7 @@ tracks/0/keys = {
 "values": [ true, false, true, false, true, false ]
 }
 
-[node name="BombPickup" type="Area2D"]
+[node name="BombPickup" type="Area2D" groups=["pickups"]]
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
