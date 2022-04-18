@@ -20,29 +20,25 @@ var spawn_points = [
 	Vector2(0, 600),
 ]
 
-var spawn_list = [
-		# list is padded so that weaker enemies have larger odds
-		{
+var Mickey = {
 			"name": "Mickey",
 			"scene": "res://Enemy/Mickey.tscn",
 			"id": 0
-		},
-		{
-			"name": "Mickey",
-			"scene": "res://Enemy/Mickey.tscn",
-			"id": 0
-		},
-		{
-			"name": "Mickey",
-			"scene": "res://Enemy/Mickey.tscn",
-			"id": 0
-		},
-		{
+		}
+var Cross = {
 			"name": "Cross",
 			"scene": "res://Enemy/Cross.tscn",
 			"id": 1
-		},
-	]	
+		}
+var Corvette = {
+			"name": "Corvette",
+			"scene": "res://Enemy/Corvette.tscn",
+			"id": 2
+		}
+
+# list is padded so that weaker enemies have larger odds
+var small_spawn_list = [Corvette, Corvette, Corvette, Corvette, Mickey]
+var spawn_list = [Mickey, Mickey, Mickey, Mickey, Cross]	
 
 var player_scene = preload("res://Player.tscn")
 
@@ -77,8 +73,9 @@ func start_game():
 	# immediately spawn one enemy
 	spawn_count = 0
 	enemy_spawn_time = enemy_spawn_base_time
-	_on_EnemySpawnTimer_timeout()
+	# _on_EnemySpawnTimer_timeout()
 	$EnemySpawnTimer.start()
+	$SmallSpawnTimer.start()
 	game_running = true
 	$HUD/Splash.visible = false
 	$HUD/GameOver.visible = false
@@ -90,6 +87,7 @@ func end_game():
 	_player = null
 	$DropSpawnTimer.stop()
 	$EnemySpawnTimer.stop()
+	$SmallSpawnTimer.stop()
 	
 	game_running = false
 	$HUD/GameOver.visible = true
@@ -113,7 +111,6 @@ func _on_DropSpawnTimer_timeout():
 
 func _on_EnemySpawnTimer_timeout():
 	if is_instance_valid(_player):
-		# spawn random component and attach it to the parent
 		var count_opts = spawn_list.size()
 		var new_spawn_data = spawn_list[randi() % count_opts]
 		var spawn_scene = load(new_spawn_data["scene"])
@@ -129,3 +126,18 @@ func _on_EnemySpawnTimer_timeout():
 	if enemy_spawn_time < enemy_spawn_min_time:
 		enemy_spawn_time = enemy_spawn_min_time
 
+
+
+func _on_SmallSpawnTimer_timeout():
+	if is_instance_valid(_player):
+		var count_opts = small_spawn_list.size()
+		var new_spawn_data = small_spawn_list[randi() % count_opts]
+		var spawn_scene = load(new_spawn_data["scene"])
+		var spawn_instance = spawn_scene.instance()
+		count_opts = spawn_points.size()
+		spawn_instance.position = spawn_points[randi() % count_opts]
+		get_tree().get_root().call_deferred("add_child", spawn_instance)
+		spawn_count = spawn_count + 1
+	
+	# random wait until next drop
+	$SmallSpawnTimer.wait_time = 3 + randi() % 3

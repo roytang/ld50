@@ -4,23 +4,20 @@
 [ext_resource path="res://Enemy/ComponentSlot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemy/Enemy.gd" type="Script" id=3]
 
-[node name="Mickey" type="KinematicBody2D"]
+[node name="Mickey" type="KinematicBody2D" groups=["enemy"]]
 script = ExtResource( 3 )
 speed = 30
 rotating = false
+can_be_hit = false
 
-[node name="Core" type="KinematicBody2D" parent="." groups=["enemy"] instance=ExtResource( 1 )]
+[node name="Core" parent="." instance=ExtResource( 1 )]
 position = Vector2( -4, 2 )
-script = ExtResource( 3 )
-rotating = false
-moving = false
-hp = 5
 
-[node name="ComponentSlot" type="Node2D" parent="Core" groups=["componentslot"] instance=ExtResource( 2 )]
+[node name="ComponentSlot" parent="Core" instance=ExtResource( 2 )]
 position = Vector2( -8, 31 )
 
-[node name="ComponentSlot2" type="Node2D" parent="Core" groups=["componentslot"] instance=ExtResource( 2 )]
+[node name="ComponentSlot2" parent="Core" instance=ExtResource( 2 )]
 position = Vector2( 32, -2 )
 
-[node name="ComponentSlot3" type="Node2D" parent="Core" groups=["componentslot"] instance=ExtResource( 2 )]
+[node name="ComponentSlot3" parent="Core" instance=ExtResource( 2 )]
 position = Vector2( -25, -21 )

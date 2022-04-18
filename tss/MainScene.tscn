@@ -53,6 +53,9 @@ stretch_mode = 2
 pause_mode = 1
 wait_time = 5.0
 
+[node name="SmallSpawnTimer" type="Timer" parent="."]
+pause_mode = 1
+
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource( 4 )
 
@@ -281,4 +284,5 @@ pause_mode = 1
 script = ExtResource( 6 )
 
 [connection signal="timeout" from="DropSpawnTimer" to="." method="_on_DropSpawnTimer_timeout"]
+[connection signal="timeout" from="SmallSpawnTimer" to="." method="_on_SmallSpawnTimer_timeout"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
