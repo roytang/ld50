@@ -35,9 +35,17 @@ var Corvette = {
 			"scene": "res://Enemy/Corvette.tscn",
 			"id": 2
 		}
+var Seeker = {
+			"name": "Seeker",
+			"scene": "res://Enemy/Seeker.tscn",
+			"id": 3
+		}
 
 # list is padded so that weaker enemies have larger odds
-var small_spawn_list = [Corvette, Corvette, Corvette, Corvette, Mickey]
+# var small_spawn_list = [Corvette, Corvette, Corvette, Corvette, Mickey]
+# var spawn_list = [Mickey, Mickey, Mickey, Mickey, Cross]	
+
+var small_spawn_list = [Seeker]
 var spawn_list = [Mickey, Mickey, Mickey, Mickey, Cross]	
 
 var player_scene = preload("res://Player.tscn")
